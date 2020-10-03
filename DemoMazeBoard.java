@@ -13,7 +13,7 @@ import java.util.Scanner;
  * https://rosettacode.org/wiki/Maze_generation#Java
  * I have taken some idea for implementing the printMazeBoard(...)
  */
-//
+
 class MazeBoard
 {
 	private int d;
