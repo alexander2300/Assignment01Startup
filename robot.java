@@ -13,10 +13,14 @@ constructor can make a BobBot with no inputs
 class BobBot implements Robot{
   String name;
   char type;
+  int stepCount;
+  int mazeSize;
 
-  public BobBot(){
+  public BobBot(int d){
     this.name = "Bob";
     this.type = 'B';
+    this.stepCount = 0;
+    this.mazeSize = d;
   }
 
   public String getName() {
@@ -27,9 +31,18 @@ class BobBot implements Robot{
     return type;
   }
 
-  //move function needs to be added
 
-  //count steps function needs to be added
+  public void move(){
+    //make him move around here
+
+    //After moving, increase his step count and check if he's going to give up
+    stepCount++;
+    if(stepCount >= 0.9*mazeSize){
+      System.out.println("I've sarched most of this maze and can't find Alice");
+      //add code here to have Bob give up
+    }
+  }
+
 
   //look for alice function needs to be added
 }
