@@ -35,7 +35,7 @@ public class Cell {
 	protected int i;
 	protected int j;
 	protected boolean emptyCell; // true -> cell is empty, false -> cell is occupied
-	protected char objName;
+	protected Robot bot;
 	protected Wall cWall;
 	protected boolean visited;
 	protected int priority;
@@ -44,20 +44,20 @@ public class Cell {
 		this.i = i;
 		this.j = j;
 		this.emptyCell = true; // by default we assume that the cell is empty
-		this.objName = ' '; // since the cell is empty, no one is occupying it
+		this.bot = null; // since the cell is empty, no one is occupying it
 		cWall = new Wall();
 		this.visited = false;
 		this.priority = 1;
 	}
 
-	public boolean putObject(char objName)
+	public boolean putRobot(Robot r)
 	{
-		if (objName != 'P' && objName != 'D' && objName != 'S' && objName != 'B' && objName != 'A') {
+		if (r.getType() != 'P' && r.getType() != 'D' && r.getType() != 'S' && r.getType() != 'B' && r.getType() != 'A') {
 			System.out.println("You are trying to put invalid/unknown object in a cell");
 			return false; //operation unsuccessful
 		}
 		else {
-			this.objName = objName;
+			this.bot = r;
 			this.emptyCell = false;
 			return true; //operation successful
 		}
@@ -69,17 +69,17 @@ public class Cell {
 		if(!isEmpty())
 		{
 			this.emptyCell = true;
-			this.objName = ' ';
+			this.bot = null;
 		}
 	}
 
 	public char whoIsHere() {
-		return this.objName;
+		return this.bot.getType();
 	}
 
 	public boolean isEmpty()
 	{
-		return emptyCell;
+		return !emptyCell;
 	}
 
 

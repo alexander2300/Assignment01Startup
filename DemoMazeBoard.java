@@ -19,6 +19,7 @@ class MazeBoard
 	private int d;
 	private Cell[][] board;
 
+//Creates a new MazeBoard
 	public MazeBoard(int d){
 		this.d = d;
 		board = new Cell[d][d];
@@ -31,10 +32,25 @@ class MazeBoard
 				board[i][j] = new Cell(i,j);
 	}
 
-	public boolean updateCell(int i, int j, char objName)
+	//Adds robots to the maze with random numbers of bots
+	public void populate(){
+		//Alice and Bob are added first since they'll always be at the same place in a maze
+		this.updateCell(0,0, new BobBot());
+		this.updateCell(d-1,d-1, new AliceBot());
+	}
+
+	//Adds robots to the maze given a specified number of each type
+	public void populate(int pNum, int cNum, int sNum, int dNum){
+		//Alice and Bob are added first since they'll always be at the same place in a maze
+		this.updateCell(0,0, new BobBot());
+		this.updateCell(d-1,d-1, new AliceBot());
+	}
+
+	//Updates the cells with their new contents
+	public boolean updateCell(int i, int j, Robot r)
 	{
 		if((i < this.d && i >= 0) && (j<this.d && j >= 0)) {
-			board[i][j].putObject(objName);
+			board[i][j].putRobot(r);
 			return true;
 		}
 		else
@@ -51,10 +67,12 @@ class MazeBoard
 				System.out.println("+");
 				// draw the west edge
 				for (int j = 0; j < this.d; j++) {
-					//if(this.board[i][j].isEmpty())
-					 System.out.print("| " + board[i][j].whoIsHere() + " ");
-					//else
-					// System.out.print("|   ");
+					if(this.board[i][j].isEmpty()) {
+						System.out.print("| " + board[i][j].whoIsHere() + " ");
+					}
+					else {
+						 System.out.print("|   ");
+					}
 				}
 				System.out.println("|");
 		 }
@@ -67,6 +85,7 @@ class MazeBoard
 
 
 	public void primsAlgorithm(int rootx, int rooty)
+			//needs the actual code here
 	{
 
 
@@ -85,12 +104,10 @@ public class DemoMazeBoard {
 		int d = scr.nextInt();
 		if(d >= 4 && d <= 10)
 		{
-		 MazeBoard mzb = new MazeBoard(d);
 
-		 mzb.updateCell(0, 3, 'S');
-		 mzb.updateCell(2, 2, 'D');
-		 mzb.updateCell(d-1, d-1, 'A');
-		 mzb.updateCell(0, 0, 'B');
+		 MazeBoard mzb = new MazeBoard(d);
+		 mzb.populate();
+
 		 mzb.printMazeBoard();
 		 mzb.primsAlgorithm(0, 0);
 		}
