@@ -38,7 +38,7 @@ class BobBot implements Robot{
     //After moving, increase his step count and check if he's going to give up
     stepCount++;
     if(stepCount >= 0.9*mazeSize){
-      System.out.println("I've sarched most of this maze and can't find Alice");
+      System.out.println("I've searched most of this maze and can't find Alice");
       //add code here to have Bob give up
     }
   }

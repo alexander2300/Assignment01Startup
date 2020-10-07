@@ -131,7 +131,7 @@ class MazeBoard
 public class DemoMazeBoard {
 
 	public static void main(String[] args) {
-
+		System.out.println("Enter the preferred maze size: ");
 		Scanner scr = new Scanner(System.in);
 		int d = scr.nextInt();
 		if(d >= 4 && d <= 10)
